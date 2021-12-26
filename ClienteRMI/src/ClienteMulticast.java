@@ -1,4 +1,3 @@
-
 import static colors.colors.ANSI_BLUE;
 import static colors.colors.ANSI_GREEN;
 import static colors.colors.ANSI_RESET;
