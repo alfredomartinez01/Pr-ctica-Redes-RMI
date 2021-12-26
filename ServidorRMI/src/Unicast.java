@@ -21,16 +21,6 @@ public class Unicast extends Thread{
        startService();
        waitForFile();   
     }
-     
-    
-    public static void main(String[] args) {
-        try{
-	    Unicast servidorU = new Unicast();
-	    servidorU.start();
-	}catch(Exception e){
-            e.printStackTrace();
-        }
-    }
 
     private void startService() {
         try{

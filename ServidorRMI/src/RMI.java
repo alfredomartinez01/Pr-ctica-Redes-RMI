@@ -46,15 +46,6 @@ public class RMI extends Thread implements Busqueda {
 	}
     }
     
-    public static void main(String[] args) {
-        try{
-	    RMI servidorR = new RMI();
-	    servidorR.start();
-	}catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    
     public searchResult searchFileInFolder(File folder, String fileName) {
         searchResult resultado = new searchResult();
         resultado.filename = "unknown";

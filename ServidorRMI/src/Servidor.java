@@ -6,18 +6,18 @@ import static colors.colors.ANSI_YELLOW;
 
 public class Servidor extends Thread{
 
-    Multicast ServidorMulticast = new Multicast();
-    RMI ServidorRMI = new RMI();
-    Unicast ServidorUnicast = new Unicast();
+    Multicast s_multicast = new Multicast();
+    RMI s_rmi = new RMI();
+    Unicast s_unicast = new Unicast();
     
     public Servidor() {
         System.out.println( ANSI_GREEN + "[ Inicia ] "+ANSI_RESET+" initServidores Iniciando...");
         System.out.print( ANSI_YELLOW + "[ Info ] "+ANSI_RESET+" Iniciando Servidor Multicast. ");
         System.out.print( ANSI_YELLOW + "[ Info ] "+ANSI_RESET+" Iniciando Servidor RMI. ");
         System.out.println( ANSI_YELLOW + "[ Info ] "+ANSI_RESET+" Iniciando Servidor Unicast. ");
-        ServidorMulticast.start();
-        ServidorRMI.start();
-        ServidorUnicast.start();
+        s_multicast.start();
+        s_rmi.start();
+        s_unicast.start();
     }
     
     public static void main(String[] args) {

@@ -40,15 +40,6 @@ public class Multicast extends Thread{
             System.exit(2);
         }
     }
-     
-    public static void main(String[] args) {
-        try{
-	    Multicast servidorM = new Multicast();
-	    servidorM.start();
-	}catch(Exception e){
-            e.printStackTrace();
-        }
-    }
     
     public Boolean send(String msg){
         try{
