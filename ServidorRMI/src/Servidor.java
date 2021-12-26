@@ -27,7 +27,5 @@ public class Servidor extends Thread{
 	}catch(Exception e){
             e.printStackTrace();
         }
-    }
-    
-    
+    }    
 }

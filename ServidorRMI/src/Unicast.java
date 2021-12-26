@@ -14,32 +14,29 @@ import java.util.logging.Logger;
 public class Unicast extends Thread{
     
     int puerto = 1234;
-    ServerSocket s;
-    Socket cl;
+    ServerSocket server;
+    Socket sk_cl;
     
     public void run(){
-       startService();
-       waitForFile();   
-    }
-
-    private void startService() {
         try{
-            s = new ServerSocket(puerto);
-            s.setReuseAddress(true);
+            server = new ServerSocket(puerto);
+            server.setReuseAddress(true);
             System.out.print( ANSI_GREEN + "[Ok] "+ANSI_RESET+" Servidor Unicast Iniciado. ");
         } catch(Exception e){
             e.printStackTrace();
         }
+        
+        escucharPeticion();   
     }
 
-    private void waitForFile() {
+    private void escucharPeticion() {
         for(;;){
             try {
-                cl = s.accept();
-                System.out.println("[ Ok ] Cliente conectado desde: "+ cl.getInetAddress()+":"+ cl.getPort());
+                sk_cl = server.accept();
+                System.out.println("[ Ok ] Cliente conectado desde: "+ sk_cl.getInetAddress()+":"+ sk_cl.getPort());
                 
                 //Leemos la entrada
-                DataInputStream dis = new DataInputStream(cl.getInputStream());
+                DataInputStream dis = new DataInputStream(sk_cl.getInputStream());
                 String nombre = (String) dis.readUTF();
                 
                 System.out.println("[ Ok ] Transfieriendo archivo..."); 
@@ -48,30 +45,35 @@ public class Unicast extends Thread{
                 long tam = f.length();
                 String path = f.getAbsolutePath();
                 System.out.println("[ Ok ] Enviando archivo: " + name + " que mide " + tam + " bytes\n");
-                DataOutputStream dos = new DataOutputStream (cl.getOutputStream());
+                DataOutputStream dos = new DataOutputStream (sk_cl.getOutputStream());
                 DataInputStream disFile = new DataInputStream(new FileInputStream(path));
-                //Enviando el archvio
-                dos.writeUTF(name); //Envia el nombre
+                
+                //Envia primero el nombre
+                dos.writeUTF(name); 
                 dos.flush();
-                dos.writeLong(tam); //Envia el tamaño
+                
+                //Envia segundo el tamaño
+                dos.writeLong(tam);
+                
+                // Enviamos todo el archivo
                 byte[] b =new byte[1500];
                 long enviados = 0;
                 int porciento = 0, n=0;
                 while(enviados < tam){
                     n = disFile.read(b);
                     dos.write(b, 0, n);
-                    dos.flush(); //se envian
+                    dos.flush();
                     enviados+=n;
                     porciento = (int)((enviados*100)/tam);
                     System.out.println("[ Enviado ] Trasmitido el " + porciento + "%");
                 }
                 disFile.close();
                 dos.close();
-                cl.close();
+                sk_cl.close();
                 System.out.println("[ Ok ] Archvio enviado con exito");
 
                 dis.close();
-                cl.close(); 
+                sk_cl.close(); 
                 
             } catch (IOException ex) {
                 Logger.getLogger(Unicast.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,21 +11,19 @@ import java.net.MulticastSocket;
 
 public class Multicast extends Thread{
  
-    /* Variables*/
-    
     public static final String MCAST_ADDR  = "228.1.1.1";
     public static final int MCAST_PORT = 9014;
     public static final int DGRAM_BUF_LEN = 1024;
     
-    InetAddress group =null;
+    InetAddress grupo = null;
 
     public void run(){
         System.out.print( ANSI_GREEN + "[Ok] "+ANSI_RESET+" Servidor Multicast Iniciado. ");
         try{
-            group = InetAddress.getByName(MCAST_ADDR);
+            grupo = InetAddress.getByName(MCAST_ADDR);
             while(true){
            
-                send("HereIAm");
+                enviar("Iniciando servicio...");
                 try{
                     Thread.sleep(5000);
                 } 
@@ -41,13 +39,14 @@ public class Multicast extends Thread{
         }
     }
     
-    public Boolean send(String msg){
+    public Boolean enviar(String msg){
         try{
-            MulticastSocket socketEnvio = new MulticastSocket(MCAST_PORT);
-            socketEnvio.joinGroup(group); // se configura para escuchar el paquete
-            DatagramPacket packet = new DatagramPacket(msg.getBytes(),msg.length(),group,MCAST_PORT);
-            socketEnvio.send(packet);
-            socketEnvio.close();
+            // Configuramos para escuchar el paquete
+            MulticastSocket skt = new MulticastSocket(MCAST_PORT);
+            skt.joinGroup(grupo); 
+            DatagramPacket packet = new DatagramPacket(msg.getBytes(),msg.length(),grupo,MCAST_PORT);
+            skt.send(packet);
+            skt.close();
             return true;
         }catch(IOException e){
             e.printStackTrace();

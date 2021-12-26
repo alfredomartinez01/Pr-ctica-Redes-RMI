@@ -16,15 +16,7 @@ import java.util.logging.Logger;
 
 public class RMI extends Thread implements Busqueda {
    
-    String path1 = "Archivos";
-    File folder1 = new File(path1);
-
-    @Override
-    public searchResult buscar(String file) throws RemoteException {
-        System.out.println( ANSI_YELLOW + "[ Buscando... ] "+ANSI_RESET+" Buscando: "+file);
-        searchResult resultado = searchFileInFolder(folder1, file);
-        return resultado;
-    }
+    File folder = new File("Archivos");
     
     public void run(){
         try {
@@ -34,8 +26,7 @@ public class RMI extends Thread implements Busqueda {
             e.printStackTrace();
         }
 	try {
-            //System.setProperty("java.rmi.server.codebase","http://8.25.100.18/clases/"); ///file:///f:\\redes2\\RMI\\RMI2
-	    RMI obj = new RMI();
+            RMI obj = new RMI();
 	    Busqueda stub = (Busqueda) UnicastRemoteObject.exportObject(obj, 0);
 	    Registry registry = LocateRegistry.getRegistry();
 	    registry.bind("Busqueda", stub);   
@@ -46,14 +37,22 @@ public class RMI extends Thread implements Busqueda {
 	}
     }
     
-    public searchResult searchFileInFolder(File folder, String fileName) {
+    @Override
+    public searchResult buscar(String file) throws RemoteException {
+        System.out.println( ANSI_YELLOW + "[ Buscando... ] "+ANSI_RESET+" Buscando: "+file);
+        searchResult resultado = buscarArchivo(folder, file);
+        return resultado;
+    }
+    
+    
+    public searchResult buscarArchivo(File folder, String fileName) {
         searchResult resultado = new searchResult();
         resultado.filename = "unknown";
         
-        File[] listOfFiles = folder1.listFiles();
+        File[] listOfFiles = this.folder.listFiles();
         for (File file : listOfFiles) {
             if (file.isFile()) {
-                if(file.getName().contains(fileName)){
+                if(file.getName().toLowerCase().contains(fileName.toLowerCase())){
                     resultado.filename = file.getName();
                     resultado.path = file.getAbsolutePath();
                     resultado.md5 = getMD5(file.getAbsolutePath().toString());
