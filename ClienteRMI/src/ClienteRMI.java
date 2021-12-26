@@ -31,7 +31,7 @@ public class ClienteRMI extends Thread{
                 for(int i=0 ; i < ServersList.size() ; i++){
                     System.out.println( ANSI_YELLOW + "[ Estado ] "+ANSI_RESET+" Buscando: "+text+" en servidor: "+ServersList.get(i).getAddress());
                     Registry registry = LocateRegistry.getRegistry(ServersList.get(i).getAddress(),1099);
-                    busquedaRMI stub = (busquedaRMI) registry.lookup("Busqueda");
+                    Busqueda stub = (Busqueda) registry.lookup("Busqueda");
                     searchResult response = stub.buscar(text);
                     if(!response.getFilename().equals("unknown")){
                         System.out.println( ANSI_GREEN + "[ Respuesta ] "+ANSI_RESET+" Busqueda name: "+response.getFilename());
