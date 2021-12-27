@@ -11,53 +11,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MulticastCl extends Thread{
-    
-    public static final String MCAST_ADDR  = "228.1.1.1";
-    public static final int MCAST_PORT = 9014;
-    public static final int DGRAM_BUF_LEN=1024;
-    InetAddress group =null;
-    private final GetSetBD db;
-    
-    private List<serverData> ServersList = new ArrayList<>();
+    public static final String dirMulticast  = "228.1.1.1";
+    public static final int ptoMulticast = 9014;
+    public static final int tamBuffer=1024;
+    private final GetSetBD BD;
+    private List<InfoServidor> servidores = new ArrayList<>();
+    InetAddress dirGrupo =null;
 
-    public MulticastCl(GetSetBD db){
-        this.db = db;
-        System.out.print( ANSI_BLUE + "[ Creado] "+ANSI_RESET+" Cliente Multicast Creado. ");
+
+    /* Constructor  */
+    public MulticastCl(GetSetBD BD){
+        this.BD = BD;
+        System.out.print( ANSI_BLUE + " Creado. Tipo: Multicast "+ANSI_RESET );
         try{
-            group = InetAddress.getByName(MCAST_ADDR);
+            dirGrupo = InetAddress.getByName(dirMulticast);
         }catch(UnknownHostException e){
             e.printStackTrace();
             System.exit(1);
         }
     }
     
-    public void run(){
-        
-        System.out.print( ANSI_GREEN + "[ Iniciadp ] "+ANSI_RESET+" Cliente Multicast Iniciado");
+    public void run(){        
+        System.out.print( ANSI_GREEN + " Iniciado. Tipo: Multicast "+ANSI_RESET);
         try{
-            MulticastSocket socket = new MulticastSocket(MCAST_PORT); 
-            socket.joinGroup(group);
+            MulticastSocket socket = new MulticastSocket(ptoMulticast); 
+            socket.joinGroup(dirGrupo);
             String mensaje="";
             while(true){
-                byte[] buf = new byte[DGRAM_BUF_LEN];
+                byte[] buf = new byte[tamBuffer];
                 DatagramPacket recv = new DatagramPacket(buf,buf.length);
                 socket.receive(recv);
                 byte [] data = recv.getData();
                 mensaje = new String(data);
                 mensaje = mensaje.trim();
                 
-                //Necesitamos verificar si ya tenemos esta servidor guardado en la lista
-                //Creamos el objeto
-                serverData ActualServer = new serverData(recv.getAddress().toString().substring(1), recv.getPort(), 6);
-                //Lo agregamos a la lista siempre y cuando no exista
-                ServersList = db.getServidores();
-                int pos = containsList(ServersList, ActualServer);
-                if ( pos == -1){
-                    db.addServidor(ActualServer);
-                    System.out.println( ANSI_GREEN + "[ Ok ] "+ANSI_RESET+" Server añadido a la lista: "+recv.getAddress().toString().substring(1));
+                // Verficiación de servidor nuevo o conocido
+                InfoServidor ActualServer = new InfoServidor(recv.getAddress().toString().substring(1), recv.getPort(), 6);
+                servidores = BD.getServidores();
+                int bandera = traerServidor(servidores, ActualServer);
+                if ( bandera == -1){
+                    BD.addServidor(ActualServer);
+                    System.out.println( ANSI_GREEN + " Nuevo.- "+ANSI_RESET+" Servidor añadido: "+recv.getAddress().toString().substring(1));
                 }else{
-                    ServersList.get(pos).setTemp(6);
-                    db.setServidores(ServersList);
+                    servidores.get(bandera).setTemp(6);
+                    BD.setServidores(servidores);
                 }
             }        
         }catch(IOException e){
@@ -67,13 +64,12 @@ public class MulticastCl extends Thread{
     }
     
 
-    public int containsList(List<serverData> lista, serverData e){
+    public int traerServidor(List<InfoServidor> lista, InfoServidor e){
         for(int i = 0 ; i < lista.size() ; i++){
-            if(lista.get(i).getAddress().equals(e.getAddress())){
+            if(lista.get(i).getDireccion().equals(e.getDireccion())){
                 return i;
             }
         }
         return -1;
-    }
-    
+    }    
 }

@@ -3,38 +3,38 @@ import java.util.List;
 
 public class GetSetBD {
    
-    private List<serverData> ServersList = new ArrayList<>();
-    private GetSetArchivos fileFound = new GetSetArchivos(); 
-    private String serverFileFound = new String();
+    private List<InfoServidor> servidores = new ArrayList<>();
+    private GetSetArchivos archEncontrado = new GetSetArchivos(); 
+    private String archEncontradoServ = new String();
 
     /* Getters */
     public String getArchivoEncontradoServ() {
-        return serverFileFound;
+        return archEncontradoServ;
     }
 
     public GetSetArchivos getArchivoEncontrado() {
-        return fileFound;
+        return archEncontrado;
     }
 
-    public List<serverData> getServidores() {
-        return ServersList;
+    public List<InfoServidor> getServidores() {
+        return servidores;
     }
     
     /*Setters */
-    public void setArchivoEncontradoServ(String serverFileFound) {
-        this.serverFileFound = serverFileFound;
+    public void setArchivoEncontradoServ(String archEncontradoServ) {
+        this.archEncontradoServ = archEncontradoServ;
     }
     
-    public void setArchivoEncontrado(GetSetArchivos fileFound) {
-        this.fileFound = fileFound;
+    public void setArchivoEncontrado(GetSetArchivos archEncontrado) {
+        this.archEncontrado = archEncontrado;
     }
     
-    public void setServidores(List<serverData> ServersList) {
-        this.ServersList = ServersList;
+    public void setServidores(List<InfoServidor> servidores) {
+        this.servidores = servidores;
     }
     
     //Add
-    public void addServidor(serverData e) {
-        ServersList.add(e);
+    public void addServidor(InfoServidor e) {
+        servidores.add(e);
     }
 }

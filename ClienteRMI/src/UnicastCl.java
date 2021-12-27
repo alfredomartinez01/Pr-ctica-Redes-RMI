@@ -10,21 +10,21 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class UnicastCl extends Thread{
+    private final GetSetBD BD;
     String local = "src\\Archivos";
     
     softwareDownload frameSoftware;
-    private final GetSetBD BD;
     Socket cliente;
     
     /* Constructor */
     public UnicastCl(GetSetBD BD, softwareDownload frameSoftware){
         this.frameSoftware = frameSoftware;
         this.BD = BD;
-        System.out.print( ANSI_BLUE + " Creado. Tipo: Unicast "+ANSI_RESET);
+        System.out.print( ANSI_BLUE + " Creado. Tipo: Unicast ");
     }
     
     public void run(){
-        System.out.println( ANSI_GREEN + " Iniciado. Tipo: Unicast "+ANSI_RESET);
+        System.out.println( ANSI_GREEN + " Iniciado. Tipo: Unicast ");
     }
     
     /* Conexion al servidor local. */
@@ -67,7 +67,7 @@ public class UnicastCl extends Thread{
                 System.out.println(" Progreso: " + porciento_recibido + "%");
                 frameSoftware.setProgressBar(porciento_recibido);
             }
-            // Cierra flujo de datos
+            // Cierra flujos de datos
             dos.close();
             dosFile.close();
             dis.close();

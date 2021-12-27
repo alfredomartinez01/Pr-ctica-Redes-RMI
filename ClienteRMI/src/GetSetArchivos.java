@@ -1,17 +1,17 @@
 import java.io.Serializable;
 
 public class GetSetArchivos implements Serializable{
-    String filename;
-    String path;
+    String nomArchivo;
+    String ruta;
     String md5;
 
     /* Getter */
     public String getNombre() {
-        return filename;
+        return nomArchivo;
     }
 
     public String getRuta() {
-        return path;
+        return ruta;
     }
     
     public String getMd5() {
@@ -19,12 +19,12 @@ public class GetSetArchivos implements Serializable{
     }
     
     /*Setter */
-    public void setNombre(String filename) {
-        this.filename = filename;
+    public void setNombre(String nomArchivo) {
+        this.nomArchivo = nomArchivo;
     }
 
-    public void setRuta(String path) {
-        this.path = path;
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
     }
 
     public void setMd5(String md5) {

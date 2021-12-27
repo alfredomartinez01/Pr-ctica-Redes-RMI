@@ -11,8 +11,8 @@ public class softwareDownload extends javax.swing.JFrame {
     
     GetSetBD db = new GetSetBD();
     MulticastCl ClienteMulticast = new MulticastCl(db);
-    ClienteMulticastCheckList ClienteMulticastCheck = new ClienteMulticastCheckList(db);
-    ClienteRMI ClienteRMI = new ClienteRMI(db, this);
+    MulticastVerifServidor ClienteMulticastCheck = new MulticastVerifServidor(db);
+    RMIcl ClienteRMI = new RMIcl(db, this);
     UnicastCl ClienteUnicast = new UnicastCl(db, this);
 
     /**
@@ -97,9 +97,9 @@ public class softwareDownload extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        //Verificar que en la db haya al menos 1 servidor
-       List<serverData> ServersList = db.getServidores();
+       List<InfoServidor> ServersList = db.getServidores();
        if(ServersList.size() != 0){
-           ClienteRMI.searchFile(inputFileName.getText());
+           ClienteRMI.buscaArchivo(inputFileName.getText());
        }else{
            JOptionPane.showMessageDialog(null, "No hay ningun servidor disponible", "Busqueda", JOptionPane.WARNING_MESSAGE);
        }
@@ -107,10 +107,11 @@ public class softwareDownload extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadActionPerformed
-        System.out.println("Se descargara: "+db.getArchivoEncontrado().getPath().toString() + " de: "+db.getArchivoEncontradoServ());
+        System.out.println("Archivo a descargar: "+db.getArchivoEncontrado().getRuta().toString());
+        System.out.println("Servidor: "+db.getArchivoEncontradoServ());
         //Nos conectamos
-        ClienteUnicast.connectWithServer();
-        ClienteUnicast.downloadFile();
+        ClienteUnicast.conectaServidor();
+        ClienteUnicast.descargaArchivo();
     }//GEN-LAST:event_btnDownloadActionPerformed
 
     private void inputFileNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFileNameActionPerformed
