@@ -1,18 +1,18 @@
 import java.io.Serializable;
 
-public class InfoServidor implements Serializable{
+public class searchResult implements Serializable{
     String direccion;
     int puerto;
     int temp;
     
     /* Constructor */
-    public InfoServidor(String direccion, int puerto, int temp) {
+    public searchResult(String direccion, int puerto, int temp) {
         this.direccion = direccion;
         this.puerto = puerto;
         this.temp = temp;
     }
     
-    public InfoServidor() {}
+    public searchResult() {}
 
     /* Getters */
     public String getDireccion() {
