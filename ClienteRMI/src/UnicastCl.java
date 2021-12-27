@@ -1,6 +1,3 @@
-import static colors.colors.ANSI_BLUE;
-import static colors.colors.ANSI_GREEN;
-import static colors.colors.ANSI_RESET;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
@@ -20,17 +17,17 @@ public class UnicastCl extends Thread{
     public UnicastCl(GetSetBD BD, softwareDownload frameSoftware){
         this.frameSoftware = frameSoftware;
         this.BD = BD;
-        System.out.print( ANSI_BLUE + " Creado. Tipo: Unicast ");
+        System.out.print(" Creado. Tipo: Unicast \n ");
     }
     
     public void run(){
-        System.out.println( ANSI_GREEN + " Iniciado. Tipo: Unicast ");
+        System.out.println(" Iniciado. Tipo: Unicast ");
     }
     
     /* Conexion al servidor local. */
     public void conectaServidor() {
         try{
-            cliente = new Socket (BD.getArchivoEncontradoServ(), 1234); //socket bloquante
+            cliente = new Socket (BD.getArchivoEncontradoServ(), 1234);
             System.out.println(" Conectado ");
         }catch(Exception e){
             showMessageDialog(null, "Error: Conexión con el servidor");
@@ -42,7 +39,7 @@ public class UnicastCl extends Thread{
         if(cliente != null){
         try {
             // Solicitud de archivo
-            System.out.println(" Atendiendo petición: " + BD.getArchivoEncontrado().getRuta().toString());
+            System.out.println("\n Atendiendo petición: " + BD.getArchivoEncontrado().getRuta().toString());
             // Creacion flujo de datos de salida
             DataOutputStream dos = new DataOutputStream (cliente.getOutputStream());
             dos.writeUTF(BD.getArchivoEncontrado().getRuta().toString());
@@ -64,7 +61,7 @@ public class UnicastCl extends Thread{
                 dosFile.flush();
                 recibidos +=n;
                 porciento_recibido = (int)((recibidos*100)/tam);
-                System.out.println(" Progreso: " + porciento_recibido + "%");
+                System.out.println(" Progreso: " + porciento_recibido + "%\n");
                 frameSoftware.setProgressBar(porciento_recibido);
             }
             // Cierra flujos de datos
@@ -72,7 +69,7 @@ public class UnicastCl extends Thread{
             dosFile.close();
             dis.close();
             cliente.close();  
-            System.out.println(" Archivo recibido exitosamente :D");
+            System.out.println(" Archivo recibido exitosamente :D\n");
             showMessageDialog(null, " Archivo recibido exitosamente :D");
 
         } catch (IOException ex) {

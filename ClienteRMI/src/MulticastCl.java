@@ -1,7 +1,3 @@
-
-import static colors.colors.ANSI_BLUE;
-import static colors.colors.ANSI_GREEN;
-import static colors.colors.ANSI_RESET;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -15,14 +11,14 @@ public class MulticastCl extends Thread{
     public static final int ptoMulticast = 9014;
     public static final int tamBuffer=1024;
     private final GetSetBD BD;
-    private List<InfoServidor> servidores = new ArrayList<>();
+    private List<searchResult> servidores = new ArrayList<>();
     InetAddress dirGrupo =null;
 
 
     /* Constructor  */
     public MulticastCl(GetSetBD BD){
         this.BD = BD;
-        System.out.print( ANSI_BLUE + " Creado. Tipo: Multicast "+ANSI_RESET );
+        System.out.print(" Creado. Tipo: Multicast \n");
         try{
             dirGrupo = InetAddress.getByName(dirMulticast);
         }catch(UnknownHostException e){
@@ -32,7 +28,7 @@ public class MulticastCl extends Thread{
     }
     
     public void run(){        
-        System.out.print( ANSI_GREEN + " Iniciado. Tipo: Multicast "+ANSI_RESET);
+        System.out.print(" Iniciado. Tipo: Multicast \n");
         try{
             MulticastSocket socket = new MulticastSocket(ptoMulticast); 
             socket.joinGroup(dirGrupo);
@@ -46,12 +42,12 @@ public class MulticastCl extends Thread{
                 mensaje = mensaje.trim();
                 
                 // Verficiación de servidor nuevo o conocido
-                InfoServidor ActualServer = new InfoServidor(recv.getAddress().toString().substring(1), recv.getPort(), 6);
+                searchResult ActualServer = new searchResult(recv.getAddress().toString().substring(1), recv.getPort(), 6);
                 servidores = BD.getServidores();
                 int bandera = traerServidor(servidores, ActualServer);
                 if ( bandera == -1){
                     BD.addServidor(ActualServer);
-                    System.out.println( ANSI_GREEN + " Nuevo.- "+ANSI_RESET+" Servidor añadido: "+recv.getAddress().toString().substring(1));
+                    System.out.println(" Nuevo.- Servidor añadido: "+recv.getAddress().toString().substring(1));
                 }else{
                     servidores.get(bandera).setTemp(6);
                     BD.setServidores(servidores);
@@ -64,7 +60,7 @@ public class MulticastCl extends Thread{
     }
     
 
-    public int traerServidor(List<InfoServidor> lista, InfoServidor e){
+    public int traerServidor(List<searchResult> lista, searchResult e){
         for(int i = 0 ; i < lista.size() ; i++){
             if(lista.get(i).getDireccion().equals(e.getDireccion())){
                 return i;

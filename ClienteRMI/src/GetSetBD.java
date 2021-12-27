@@ -3,7 +3,7 @@ import java.util.List;
 
 public class GetSetBD {
    
-    private List<InfoServidor> servidores = new ArrayList<>();
+    private List<searchResult> servidores = new ArrayList<>();
     private GetSetArchivos archEncontrado = new GetSetArchivos(); 
     private String archEncontradoServ = new String();
 
@@ -16,7 +16,7 @@ public class GetSetBD {
         return archEncontrado;
     }
 
-    public List<InfoServidor> getServidores() {
+    public List<searchResult> getServidores() {
         return servidores;
     }
     
@@ -29,12 +29,12 @@ public class GetSetBD {
         this.archEncontrado = archEncontrado;
     }
     
-    public void setServidores(List<InfoServidor> servidores) {
+    public void setServidores(List<searchResult> servidores) {
         this.servidores = servidores;
     }
     
     //Add
-    public void addServidor(InfoServidor e) {
+    public void addServidor(searchResult e) {
         servidores.add(e);
     }
 }

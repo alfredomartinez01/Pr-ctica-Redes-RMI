@@ -97,7 +97,7 @@ public class softwareDownload extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        //Verificar que en la db haya al menos 1 servidor
-       List<InfoServidor> ServersList = db.getServidores();
+       List<searchResult> ServersList = db.getServidores();
        if(ServersList.size() != 0){
            ClienteRMI.buscaArchivo(inputFileName.getText());
        }else{
