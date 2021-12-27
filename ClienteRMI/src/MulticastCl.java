@@ -10,17 +10,17 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteMulticast extends Thread{
+public class MulticastCl extends Thread{
     
     public static final String MCAST_ADDR  = "228.1.1.1";
     public static final int MCAST_PORT = 9014;
     public static final int DGRAM_BUF_LEN=1024;
     InetAddress group =null;
-    private final database db;
+    private final GetSetBD db;
     
     private List<serverData> ServersList = new ArrayList<>();
 
-    public ClienteMulticast(database db){
+    public MulticastCl(GetSetBD db){
         this.db = db;
         System.out.print( ANSI_BLUE + "[ Creado] "+ANSI_RESET+" Cliente Multicast Creado. ");
         try{
@@ -50,14 +50,14 @@ public class ClienteMulticast extends Thread{
                 //Creamos el objeto
                 serverData ActualServer = new serverData(recv.getAddress().toString().substring(1), recv.getPort(), 6);
                 //Lo agregamos a la lista siempre y cuando no exista
-                ServersList = db.getServersList();
+                ServersList = db.getServidores();
                 int pos = containsList(ServersList, ActualServer);
                 if ( pos == -1){
-                    db.addServer(ActualServer);
+                    db.addServidor(ActualServer);
                     System.out.println( ANSI_GREEN + "[ Ok ] "+ANSI_RESET+" Server añadido a la lista: "+recv.getAddress().toString().substring(1));
                 }else{
                     ServersList.get(pos).setTemp(6);
-                    db.setServersList(ServersList);
+                    db.setServidores(ServersList);
                 }
             }        
         }catch(IOException e){

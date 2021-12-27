@@ -1,4 +1,3 @@
-
 import static colors.colors.ANSI_BLUE;
 import static colors.colors.ANSI_GREEN;
 import static colors.colors.ANSI_RED;
@@ -7,14 +6,11 @@ import static colors.colors.ANSI_YELLOW;
 
 import java.util.List;
 
-
-
 public class ClienteMulticastCheckList extends Thread{
 
-    private final database db;
-    
+    private final GetSetBD db;
 
-    public ClienteMulticastCheckList(database db){
+    public ClienteMulticastCheckList(GetSetBD db){
         this.db = db;
         System.out.print( ANSI_BLUE + "[ Creado ] "+ANSI_RESET+" Cliente Multicast CheckList Creado. ");
     }
@@ -23,7 +19,7 @@ public class ClienteMulticastCheckList extends Thread{
         System.out.print( ANSI_GREEN + "[ Iniciado ] "+ANSI_RESET+" Cliente Multicast CheckList Iniciado");
         while(true){
             try{
-                List<serverData> ServersList = db.getServersList();
+                List<serverData> ServersList = db.getServidores();
                 if(ServersList.size() != 0){
                     for(int i=0 ; i < ServersList.size() ; i++){
                         if(ServersList.get(i).getTemp() == 0){
@@ -44,6 +40,4 @@ public class ClienteMulticastCheckList extends Thread{
             }
         }
     }
-   
-    
 }

@@ -1,5 +1,3 @@
-
-
 import static colors.colors.ANSI_GREEN;
 import static colors.colors.ANSI_RESET;
 import static colors.colors.ANSI_YELLOW;
@@ -11,11 +9,11 @@ import javax.swing.JOptionPane;
 
 public class softwareDownload extends javax.swing.JFrame {
     
-    database db = new database();
-    ClienteMulticast ClienteMulticast = new ClienteMulticast(db);
+    GetSetBD db = new GetSetBD();
+    MulticastCl ClienteMulticast = new MulticastCl(db);
     ClienteMulticastCheckList ClienteMulticastCheck = new ClienteMulticastCheckList(db);
     ClienteRMI ClienteRMI = new ClienteRMI(db, this);
-    ClienteUnicast ClienteUnicast = new ClienteUnicast(db, this);
+    UnicastCl ClienteUnicast = new UnicastCl(db, this);
 
     /**
      * Creates new form Client
@@ -99,7 +97,7 @@ public class softwareDownload extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        //Verificar que en la db haya al menos 1 servidor
-       List<serverData> ServersList = db.getServersList();
+       List<serverData> ServersList = db.getServidores();
        if(ServersList.size() != 0){
            ClienteRMI.searchFile(inputFileName.getText());
        }else{
@@ -109,7 +107,7 @@ public class softwareDownload extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadActionPerformed
-        System.out.println("Se descargara: "+db.getFileFound().getPath().toString() + " de: "+db.getServerFileFound());
+        System.out.println("Se descargara: "+db.getArchivoEncontrado().getPath().toString() + " de: "+db.getArchivoEncontradoServ());
         //Nos conectamos
         ClienteUnicast.connectWithServer();
         ClienteUnicast.downloadFile();
