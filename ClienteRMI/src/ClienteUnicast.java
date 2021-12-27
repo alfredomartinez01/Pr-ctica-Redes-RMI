@@ -1,4 +1,3 @@
-
 import static colors.colors.ANSI_BLUE;
 import static colors.colors.ANSI_GREEN;
 import static colors.colors.ANSI_RESET;
@@ -12,7 +11,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ClienteUnicast extends Thread{
     
-    String local = "src\\descargas";
+    String local = "src\\Archivos";
     
     softwareDownload frameSoftware;
     private final database db;

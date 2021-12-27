@@ -90,7 +90,7 @@ public class softwareDownload extends javax.swing.JFrame {
         });
         getContentPane().add(btnDownload, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 250, 60));
 
-        lblWallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/p.jpg"))); // NOI18N
+        lblWallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoCliente.png"))); // NOI18N
         lblWallpaper.setText("jLabel1");
         getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 430));
 

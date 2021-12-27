@@ -1,8 +1,4 @@
-
-
-
 import java.io.Serializable;
-
 
 public class serverData implements Serializable{
     String address;
