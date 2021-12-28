@@ -17,20 +17,20 @@ public class UnicastCl extends Thread{
     public UnicastCl(GetSetBD BD, softwareDownload frameSoftware){
         this.frameSoftware = frameSoftware;
         this.BD = BD;
-        System.out.print(" Creado. Tipo: Unicast \n ");
+        System.out.print(" Creado -> Tipo: Cliente Unicast. √ \n ");
     }
     
     public void run(){
-        System.out.println(" Iniciado. Tipo: Unicast ");
+        System.out.println(" Iniciado -> Tipo: Cliente Unicast.  ↑\n ");
     }
     
     /* Conexion al servidor local. */
     public void conectaServidor() {
         try{
             cliente = new Socket (BD.getArchivoEncontradoServ(), 1234);
-            System.out.println(" Conectado ");
+            System.out.println("Conexion con Servidor correcta. √\n");
         }catch(Exception e){
-            showMessageDialog(null, "Error: Conexión con el servidor");
+            showMessageDialog(null, "Problemas con el servidor. ¤\n");
         }
     }
     
@@ -62,8 +62,7 @@ public class UnicastCl extends Thread{
                 recibidos +=n;
                 porciento_recibido = (int)((recibidos*100)/tam);
                 System.out.println(" Progreso: " + porciento_recibido + "%\n");
-                frameSoftware.setProgressBar(porciento_recibido);
-            }
+                }
             // Cierra flujos de datos
             dos.close();
             dosFile.close();
@@ -73,7 +72,7 @@ public class UnicastCl extends Thread{
             showMessageDialog(null, " Archivo recibido exitosamente :D");
 
         } catch (IOException ex) {
-            showMessageDialog(null, " Error: Carga del archivo ");
+            showMessageDialog(null, "No se ha podido completar la funcion. ¤\n");
             }
         }
     }

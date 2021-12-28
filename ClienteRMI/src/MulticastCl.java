@@ -18,7 +18,7 @@ public class MulticastCl extends Thread{
     /* Constructor  */
     public MulticastCl(GetSetBD BD){
         this.BD = BD;
-        System.out.print(" Creado. Tipo: Multicast \n");
+        System.out.print(" Creado -> Tipo: Multicast. √ \n");
         try{
             dirGrupo = InetAddress.getByName(dirMulticast);
         }catch(UnknownHostException e){
@@ -28,7 +28,7 @@ public class MulticastCl extends Thread{
     }
     
     public void run(){        
-        System.out.print(" Iniciado. Tipo: Multicast \n");
+        System.out.print(" Iniciado -> Tipo: Multicast. ↑\n");
         try{
             MulticastSocket socket = new MulticastSocket(ptoMulticast); 
             socket.joinGroup(dirGrupo);
@@ -47,7 +47,7 @@ public class MulticastCl extends Thread{
                 int bandera = traerServidor(servidores, ActualServer);
                 if ( bandera == -1){
                     BD.addServidor(ActualServer);
-                    System.out.println(" Nuevo.- Servidor añadido: "+recv.getAddress().toString().substring(1));
+                    System.out.println(" Nuevo -> Servidor añadido: "+recv.getAddress().toString().substring(1));
                 }else{
                     servidores.get(bandera).setTemp(6);
                     BD.setServidores(servidores);

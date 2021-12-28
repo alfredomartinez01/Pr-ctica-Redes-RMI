@@ -6,11 +6,11 @@ public class MulticastVerifServidor extends Thread{
     /* Constructor */
     public MulticastVerifServidor(GetSetBD BD){
         this.BD = BD;
-        System.out.print("Creado. Tipo: Multicast. Funcion: Verfica servidor \n");
+        System.out.print("Creado -> Tipo: Multicast. Funcion: Verfica servidor. √ \n");
     }
     
     public void run(){
-        System.out.print(" Iniciado. Tipo: Multicast. Funcion: Verfica servidor\n");
+        System.out.print(" Iniciado -> Tipo: Multicast. Funcion: Verfica servidor. ↑\n");
         while(true){
             try{
                 List<searchResult> servidores = BD.getServidores();
@@ -19,7 +19,7 @@ public class MulticastVerifServidor extends Thread{
                         // Verifica servidores activos para mantener o eliminar
                         if(servidores.get(i).getTemp() == 0){
                             servidores.remove(i);
-                            System.out.println(" Eliminado. Tipo Multicast. Función: Elimina servidor inactivo ");
+                            System.out.println(" Eliminado -> Tipo Multicast. Función: Elimina servidor inactivo. ¤\n ");
                         }else{
                             servidores.get(i).setTemp(servidores.get(i).getTemp()-1);
                         }   

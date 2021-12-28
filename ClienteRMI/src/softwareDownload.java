@@ -1,6 +1,3 @@
-import static colors.colors.ANSI_GREEN;
-import static colors.colors.ANSI_RESET;
-import static colors.colors.ANSI_YELLOW;
 import java.awt.Color;
 
 import java.util.List;
@@ -20,12 +17,11 @@ public class softwareDownload extends javax.swing.JFrame {
      */
     public softwareDownload() {
         initComponents();
-        lblResult.setVisible(false);
-        System.out.println( ANSI_GREEN + "[ Iniciado ] "+ANSI_RESET+" Software iniciado. ");
-        System.out.print( ANSI_YELLOW + "[ Estado ] "+ANSI_RESET+" Iniciando Cliente Multicast. ");
-        System.out.print( ANSI_YELLOW + "[ Estado ] "+ANSI_RESET+" Iniciando Cliente Multicast CL. ");
-        System.out.print( ANSI_YELLOW + "[ Estado ] "+ANSI_RESET+" Iniciando Cliente RMI. ");
-        System.out.println( ANSI_YELLOW + "[ Estado ] "+ANSI_RESET+" Iniciando Cliente Unicast. ");
+        System.out.println("El Software ha sido iniciado. ↑ \n ");
+        System.out.print("Cliente Multicast inicializado. ↑\n");
+        System.out.print("Cliente Multicast CL inicializado. ↑\n");
+        System.out.print("Cliente RMI inicializado. ↑\n");
+        System.out.println("Cliente Unicast inicializado. ↑\n ");
         ClienteMulticast.start();
         ClienteMulticastCheck.start();
         ClienteRMI.start();
@@ -41,44 +37,38 @@ public class softwareDownload extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         inputFileName = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        progressBar = new javax.swing.JProgressBar();
-        lblResult = new javax.swing.JLabel();
         btnDownload = new javax.swing.JButton();
-        lblWallpaper = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(550, 314));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Busqueda de archivos");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         inputFileName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputFileNameActionPerformed(evt);
             }
         });
-        getContentPane().add(inputFileName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 270, 30));
+        getContentPane().add(inputFileName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 270, 30));
 
         btnBuscar.setFont(new java.awt.Font("VL Gothic", 0, 13)); // NOI18N
-        btnBuscar.setText("Buscar");
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search.png"))); // NOI18N
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 140, 40));
-        getContentPane().add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 840, 20));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 40, 40));
 
-        lblResult.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        lblResult.setForeground(new java.awt.Color(102, 255, 102));
-        lblResult.setText("Listo para buscar...");
-        getContentPane().add(lblResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 200, 40));
-
+        btnDownload.setBackground(new java.awt.Color(255, 255, 255));
+        btnDownload.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnDownload.setForeground(new java.awt.Color(253, 212, 228));
         btnDownload.setText("Descargar");
         btnDownload.setEnabled(false);
         btnDownload.addActionListener(new java.awt.event.ActionListener() {
@@ -86,11 +76,25 @@ public class softwareDownload extends javax.swing.JFrame {
                 btnDownloadActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDownload, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 250, 60));
+        getContentPane().add(btnDownload, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 160, 50));
 
-        lblWallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondoCliente.png"))); // NOI18N
-        lblWallpaper.setText("jLabel1");
-        getContentPane().add(lblWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 430));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IPN.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ESCOM.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Lucida Console", 0, 12)); // NOI18N
+        jLabel4.setText("Ingresa nombre del archivo:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("NSimSun", 1, 30)); // NOI18N
+        jLabel2.setText("Búsqueda de archivos");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(253, 238, 244));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(253, 223, 234), new java.awt.Color(255, 204, 204)));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -101,7 +105,7 @@ public class softwareDownload extends javax.swing.JFrame {
        if(ServersList.size() != 0){
            ClienteRMI.buscaArchivo(inputFileName.getText());
        }else{
-           JOptionPane.showMessageDialog(null, "No hay ningun servidor disponible", "Busqueda", JOptionPane.WARNING_MESSAGE);
+           JOptionPane.showMessageDialog(null,  "Servidor no disponible ¤" , "Busqueda", JOptionPane.WARNING_MESSAGE);
        }
       
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -156,16 +160,6 @@ public class softwareDownload extends javax.swing.JFrame {
         });
     }
     
-    public void changeResultLabel(boolean b, String text){
-        if(b){
-            lblResult.setForeground(Color.green);
-        }else{
-            lblResult.setForeground(Color.red);
-        }
-        lblResult.setText(text);
-        lblResult.setVisible(true);
-    }
-    
     public void changeDownload(boolean b){
         btnDownload.setEnabled(b);
     }
@@ -174,15 +168,11 @@ public class softwareDownload extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDownload;
     private javax.swing.JTextField inputFileName;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblResult;
-    private javax.swing.JLabel lblWallpaper;
-    private javax.swing.JProgressBar progressBar;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-
-    void setProgressBar(int porciento_recibido) {
-        progressBar.setValue(porciento_recibido);
-        progressBar.setStringPainted(true);
-    }
 }
