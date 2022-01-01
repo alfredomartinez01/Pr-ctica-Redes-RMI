@@ -111,6 +111,7 @@ public class softwareDownload extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadActionPerformed
+
         System.out.println("Archivo a descargar: "+db.getArchivoEncontrado().getPath().toString());
         System.out.println("Servidor: "+db.getArchivoEncontradoServ());
         //Nos conectamos

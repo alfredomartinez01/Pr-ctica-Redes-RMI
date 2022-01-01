@@ -1,5 +1,4 @@
 
-
 import java.io.Serializable;
 
 
@@ -31,5 +30,5 @@ public class searchResult implements Serializable{
     public void setMd5(String md5) {
         this.md5 = md5;
     }
-    
+
 }
