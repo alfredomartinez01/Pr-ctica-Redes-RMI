@@ -10,11 +10,11 @@ public class UnicastCl extends Thread{
     private final GetSetBD BD;
     String local = "Archivos";
     
-    softwareDownload frameSoftware;
+    Cliente frameSoftware;
     Socket cliente;
     
     /* Constructor */
-    public UnicastCl(GetSetBD BD, softwareDownload frameSoftware){
+    public UnicastCl(GetSetBD BD, Cliente frameSoftware){
         this.frameSoftware = frameSoftware;
         this.BD = BD;
         System.out.print(" Creado -> Tipo: Cliente Unicast. √ \n ");

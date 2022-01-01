@@ -4,7 +4,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 
-public class softwareDownload extends javax.swing.JFrame {
+public class Cliente extends javax.swing.JFrame {
     
     GetSetBD db = new GetSetBD();
     MulticastCl ClienteMulticast = new MulticastCl(db);
@@ -15,7 +15,7 @@ public class softwareDownload extends javax.swing.JFrame {
     /**
      * Creates new form Client
      */
-    public softwareDownload() {
+    public Cliente() {
         initComponents();
         System.out.println("El Software ha sido iniciado. ↑ \n ");
         System.out.print("Cliente Multicast inicializado. ↑\n");
@@ -47,7 +47,6 @@ public class softwareDownload extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(550, 314));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         inputFileName.addActionListener(new java.awt.event.ActionListener() {
@@ -140,14 +139,18 @@ public class softwareDownload extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(softwareDownload.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(softwareDownload.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(softwareDownload.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(softwareDownload.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -156,7 +159,7 @@ public class softwareDownload extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new softwareDownload().setVisible(true);
+                new Cliente().setVisible(true);
             }
         });
     }

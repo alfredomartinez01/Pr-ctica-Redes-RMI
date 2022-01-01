@@ -5,9 +5,9 @@ import java.util.List;
 
 public class RMIcl extends Thread{
     private final GetSetBD BD;
-    softwareDownload frameSoftware;
+    Cliente frameSoftware;
 
-    public RMIcl(GetSetBD BD, softwareDownload frameSoftware) {
+    public RMIcl(GetSetBD BD, Cliente frameSoftware) {
         this.frameSoftware = frameSoftware;
         this.BD = BD;
         System.out.print(" Creado -> Tipo: Cliente RMI. √ \n");
